@@ -16,11 +16,7 @@ const Form = ({ currentId, setCurrentId }) => {
    });
 
    // mengambil global store
-   const post = useSelector((state) =>
-      currentId
-         ? state.posts.find((message) => message._id === currentId)
-         : null
-   );
+   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 
    // mendapatkan aksi pengiriman yang ada
    const dispatch = useDispatch();
@@ -46,7 +42,7 @@ const Form = ({ currentId, setCurrentId }) => {
    const handleSubmit = async (e) => {
       e.preventDefault();
 
-      // lakukan post data berdasarkan 
+      // lakukan post data berdasarkan
       if (currentId === 0) {
          dispatch(createPost(postData));
          clear();
@@ -58,24 +54,15 @@ const Form = ({ currentId, setCurrentId }) => {
 
    return (
       <Paper sx={classes.paper}>
-         <form
-            autoComplete="off"
-            noValidate
-            className={`${classes.root} ${classes.form}`}
-            onSubmit={handleSubmit}
-         >
-            <Typography variant="h6">
-               {currentId ? `Editing "${post.title}"` : "Creating a Memory"}
-            </Typography>
+         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
+            <Typography variant="h6">{currentId ? `Editing "${post.title}"` : "Creating a Memory"}</Typography>
             <TextField
                name="creator"
                variant="outlined"
                label="Creator"
                fullWidth
                value={postData.creator}
-               onChange={(e) =>
-                  setPostData({ ...postData, creator: e.target.value })
-               }
+               onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
             />
             <TextField
                name="title"
@@ -83,9 +70,7 @@ const Form = ({ currentId, setCurrentId }) => {
                label="Title"
                fullWidth
                value={postData.title}
-               onChange={(e) =>
-                  setPostData({ ...postData, title: e.target.value })
-               }
+               onChange={(e) => setPostData({ ...postData, title: e.target.value })}
             />
             <TextField
                name="message"
@@ -95,9 +80,7 @@ const Form = ({ currentId, setCurrentId }) => {
                multiline
                rows={4}
                value={postData.message}
-               onChange={(e) =>
-                  setPostData({ ...postData, message: e.target.value })
-               }
+               onChange={(e) => setPostData({ ...postData, message: e.target.value })}
             />
             <TextField
                name="tags"
@@ -105,36 +88,19 @@ const Form = ({ currentId, setCurrentId }) => {
                label="Tags (coma separated)"
                fullWidth
                value={postData.tags}
-               onChange={(e) =>
-                  setPostData({ ...postData, tags: e.target.value.split(",") })
-               }
+               onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(",") })}
             />
             <div style={classes.fileInput}>
                <FileBase
                   type="file"
                   multiple={false}
-                  onDone={({ base64 }) =>
-                     setPostData({ ...postData, selectedFile: base64 })
-                  }
+                  onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
                />
             </div>
-            <Button
-               sx={classes.buttonSubmit}
-               variant="contained"
-               color="primary"
-               size="large"
-               type="submit"
-               fullWidth
-            >
+            <Button sx={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>
                Submit
             </Button>
-            <Button
-               variant="contained"
-               color="secondary"
-               size="small"
-               onClick={clear}
-               fullWidth
-            >
+            <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>
                Clear
             </Button>
          </form>

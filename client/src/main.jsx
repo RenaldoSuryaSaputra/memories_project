@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 import rootReducers from "./reducers";
 
 const store = configureStore(
-   { reducer: rootReducers },
+   { reducer: rootReducers }, // diambil dari file reducers
    compose(applyMiddleware(thunk))
 );
 

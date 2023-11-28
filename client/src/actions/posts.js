@@ -12,8 +12,7 @@ export const getPosts = () => async (dispatch) => {
    // redux-thunk for async harus di dispatch
    try {
       const { data } = await api.fetchPosts(); // response.data == data
-
-      dispatch({ type: FETCH_ALL, payload: data }); // masukan data dalam payload,dikirim di filereducer
+      dispatch({ type: FETCH_ALL, payload: data.data }); // masukan data dalam payload,dikirim di filereducer
    } catch (error) {
       console.log(error.message);
    }

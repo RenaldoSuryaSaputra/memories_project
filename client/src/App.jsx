@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'; // mengirimkan aksi
 
-// import Posts from './components/Posts/Posts';
-// import Form from './components/Form/Form';
-// import { getPosts } from './actions/posts';
+import Posts from './components/Posts/Posts'
+import Form from './components/Form/Form';
+import { getPosts } from './actions/posts';
 import useStyles from './styles';
 import memories from './assets/memories.png';
 
 const App = () => {
   const [currentId, setCurrentId] = useState(0);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch(); // define dispatch in useEffect
   const classes = useStyles();
 
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [currentId, dispatch]);
+  useEffect(() => {
+    // meminta getPost 
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
   return (
     <Container maxWidth="lg">
@@ -27,12 +28,10 @@ const App = () => {
         <Container>
           <Grid container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-              <p>POST</p>
-              {/* <Posts setCurrentId={setCurrentId} /> */}
+              <Posts/>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <p>FORM</p>
-              {/* <Form currentId={currentId} setCurrentId={setCurrentId} /> */}
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>

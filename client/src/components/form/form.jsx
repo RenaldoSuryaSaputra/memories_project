@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 
+import { createPost, updatePost } from "../../actions/posts";
 import useStyles from "./styles";
-// import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
    const [postData, setPostData] = useState({
@@ -14,19 +14,24 @@ const Form = ({ currentId, setCurrentId }) => {
       tags: "",
       selectedFile: "",
    });
-   // const post = useSelector((state) =>
-   //    currentId
-   //       ? state.posts.find((message) => message._id === currentId)
-   //       : null
-   // );
-   // const dispatch = useDispatch();
+
+   // mengambil global store
+   const post = useSelector((state) =>
+      currentId
+         ? state.posts.find((message) => message._id === currentId)
+         : null
+   );
+
+   // mendapatkan aksi pengiriman yang ada
+   const dispatch = useDispatch();
    const classes = useStyles();
-   const post = null
 
-   // useEffect(() => {
-   //    if (post) setPostData(post);
-   // }, [post]);
+   // jika ada data global maka masukan ke useState
+   useEffect(() => {
+      if (post) setPostData(post);
+   }, [post]);
 
+   // clear form
    const clear = () => {
       setCurrentId(0);
       setPostData({
@@ -41,13 +46,14 @@ const Form = ({ currentId, setCurrentId }) => {
    const handleSubmit = async (e) => {
       e.preventDefault();
 
-      // if (currentId === 0) {
-      //    dispatch(createPost(postData));
-      //    clear();
-      // } else {
-      //    dispatch(updatePost(currentId, postData));
-      //    clear();
-      // }
+      // lakukan post data berdasarkan 
+      if (currentId === 0) {
+         dispatch(createPost(postData));
+         clear();
+      } else {
+         dispatch(updatePost(currentId, postData));
+         clear();
+      }
    };
 
    return (
@@ -103,7 +109,7 @@ const Form = ({ currentId, setCurrentId }) => {
                   setPostData({ ...postData, tags: e.target.value.split(",") })
                }
             />
-            <div className={classes.fileInput}>
+            <div style={classes.fileInput}>
                <FileBase
                   type="file"
                   multiple={false}

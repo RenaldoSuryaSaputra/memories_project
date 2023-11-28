@@ -1,23 +1,24 @@
-const FormStyle = ((theme) => ({
+const FormStyle = (() => ({
    root: {
       "& .MuiTextField-root": {
-         margin: theme.spacing(1),
+         margin: "4px",
       },
    },
    paper: {
-      padding: theme.spacing(2),
+      padding: "4px",
    },
    form: {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "center",
+      margin: "20px 0"
    },
    fileInput: {
       width: "97%",
-      margin: "10px 0",
+      margin: "20px 0",
    },
    buttonSubmit: {
-      marginBottom: 10,
+      marginBottom: "10px",
    },
 }));
 

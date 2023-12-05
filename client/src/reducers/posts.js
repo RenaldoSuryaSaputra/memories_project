@@ -9,6 +9,7 @@ import {
 // State sama action (CRUD)
 export default (posts = [], action) => {
    // store dengan nama posts
+   // action.type dan action.payload diterima dari dispatch pada pemanggilan di app
    switch (action.type) {
       case FETCH_ALL:
          return action.payload;

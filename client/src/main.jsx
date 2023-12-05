@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { configureStore, applyMiddleware, compose } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import rootReducers from "./reducers";
+import "./index.css"
 
 const store = configureStore(
    { reducer: rootReducers }, // diambil dari file reducers

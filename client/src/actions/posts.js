@@ -8,10 +8,12 @@ import {
 
 import * as api from "../api/index.js";
 
+// dispatch({ type: CREATE, payload: data }) untuk isi global variable
 export const getPosts = () => async (dispatch) => {
    // redux-thunk for async harus di dispatch
    try {
       const { data } = await api.fetchPosts(); // response.data == data
+      // trigger file reducer
       dispatch({ type: FETCH_ALL, payload: data.data }); // masukan data dalam payload,dikirim di filereducer
    } catch (error) {
       console.log(error.message);

@@ -8,7 +8,7 @@ import {
 
 import * as api from "../api/index.js";
 
-// dispatch({ type: CREATE, payload: data }) untuk isi global variable
+// dispatch({ type: CREATE, payload: data }) untuk isi global variable dengan meneruskan ke reducer
 export const getPosts = () => async (dispatch) => {
    // redux-thunk for async harus di dispatch
    try {
@@ -32,11 +32,11 @@ export const createPost = (post) => async (dispatch) => {
 
 export const updatePost = (id, post) => async (dispatch) => {
    try {
-      const { data } = await api.updatePost(id, post);
+      const { data } = await api.updatePost(id, post); // return update post
 
       dispatch({ type: UPDATE, payload: data });
    } catch (error) {
-      console.log(error.message);
+      console.log(error);
    }
 };
 
@@ -46,15 +46,15 @@ export const likePost = (id) => async (dispatch) => {
 
       dispatch({ type: LIKE, payload: data });
    } catch (error) {
-      console.log(error.message);
+      console.log(error);
    }
 };
 
 export const deletePost = (id) => async (dispatch) => {
    try {
-      await api.deletePost(id);
+      await api.deletePost(id); // hapus didatabase
 
-      dispatch({ type: DELETE, payload: id });
+      dispatch({ type: DELETE, payload: id }); // hapus di state global
    } catch (error) {
       console.log(error.message);
    }

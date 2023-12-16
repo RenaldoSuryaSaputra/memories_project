@@ -15,6 +15,7 @@ const Post = ({ post, setCurrentId }) => {
 
    return (
       <Card sx={classes.card}>
+         {/* background card  */}
          <CardMedia
             sx={classes.media}
             image={
@@ -27,14 +28,18 @@ const Post = ({ post, setCurrentId }) => {
             <Typography variant="h6">{post.creator}</Typography>
             <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
          </div>
+
+         {/* edit button */}
          <div style={classes.overlay2}>
+            {/* saat edit button ditekan maka akan setCurrentId yang akan dikembalikan ke
+            app.jsx dan akan digunakan pada form */}
             <Button
                style={{
                   color: "white",
                }}
                size="small"
                onClick={() => setCurrentId(post._id)}
-            >
+               >
                <MoreHorizIcon fontSize="default" />
             </Button>
          </div>

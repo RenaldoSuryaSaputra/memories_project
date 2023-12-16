@@ -15,7 +15,7 @@ const Form = ({ currentId, setCurrentId }) => {
       selectedFile: "",
    });
 
-   // mengambil global store
+   /**mengambil global store untuk data dari updatedpost dengan validasi apakah ada id yang diterima component post*/
    const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 
    // mendapatkan aksi pengiriman yang ada

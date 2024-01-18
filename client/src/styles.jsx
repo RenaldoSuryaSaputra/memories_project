@@ -12,7 +12,8 @@ const AppStyle = (() => ({
   },
   image: {
     marginLeft: '15px',
-  },
-}));
+  }
+  }
+));
 
 export default AppStyle

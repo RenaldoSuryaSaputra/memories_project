@@ -88,7 +88,7 @@ const Form = ({ currentId, setCurrentId }) => {
                label="Tags (coma separated)"
                fullWidth
                value={postData.tags}
-               onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(",") })}
+               onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(",") })} // spil tag berdasarkan koma
             />
             <div style={classes.fileInput}>
                <FileBase
